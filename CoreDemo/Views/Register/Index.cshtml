@@ -1,0 +1,60 @@
+﻿@model Writer
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/UserLayout.cshtml";
+}
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+
+<section class="main-content-w3layouts-agileits">
+    <div class="container">
+        <h3 class="tittle">Register Now</h3>
+        <div class="inner-sec">
+            <div class="login p-5 bg-light mx-auto mw-100">
+                @using (Html.BeginForm("Index", "Register", FormMethod.Post))
+                {
+                    <div class="form-row">
+                        <div class="col-md-6 mb-3">
+                            <label for="validationCustom01">Name Surname</label>
+                            @Html.TextBoxFor(a=>a.WriterName , new {@class = "form-control"})
+                            @Html.ValidationMessageFor(a=>a.WriterName,"", new { @class ="text-danger"})
+                            @*  <input type="text" class="form-control" id="validationDefault01" name="WriterName" placeholder="" required=""> *@
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="validationCustom02">Mail Address</label>
+                            @* <input type="text" class="form-control" id="validationDefault02" name="WriterMail" placeholder="" required=""> *@
+                            @Html.TextBoxFor(a=>a.WriterMail, new {@class="form-control"})
+                            @Html.ValidationMessageFor(a=>a.WriterMail ,"", new {@class="text-danger"})
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputPassword1 mb-2">Password</label>
+                            @* <input type="password" class="form-control" id="password1" name="WriterPassword" placeholder="" required=""> *@
+                            @Html.TextBoxFor(a=>a.WriterPassword , new {@class="form-control"})
+                            @Html.ValidationMessageFor(a=>a.WriterPassword ,"", new {@class="text-danger"})
+                        </div>
+                        <div class="form-group col-md-6">
+                            <label for="exampleInputPassword2 mb-2">Image Path</label> <!--Temporary then adding image as Ifileform-->
+                            @*  <input type="text" class="form-control" id="password2" placeholder="" required=""> *@
+                            @Html.TextBoxFor(a=>a.WriterImage , new {@class="form-control"})
+                            @Html.ValidationMessageFor(a=>a.WriterImage ,"", new {@class="text-danger"})
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary submit mb-4">Register</button>
+                    <p>
+                        <a href="#" id="btn1">By clicking Signup, I agree to your terms</a>
+                    </p>
+                }
+            </div>
+        </div>
+    </div>
+    <br />
+    <script>
+        $('#btn1').click(function () {
+            swal("Our Site terms","I read all and I agree");
+        });
+    </script>
+</section>
+

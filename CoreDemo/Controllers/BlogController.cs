@@ -8,24 +8,22 @@ namespace CoreDemo.Controllers
 {
     public class BlogController : Controller
     {
-        private readonly BlogManager _blogService;
+        private readonly IBlogService _blogManager;
 
-        public BlogController(BlogManager blogService)
+        public BlogController(IBlogService blogService)
         {
-            _blogService = blogService;
+            _blogManager = blogService;
         }
 
-
-
-       // BlogManager _blogService = new BlogManager(new EFBlogRepository());
         public IActionResult Index()
         {
-            var values = _blogService.GetBlogListWithCategory();
+            var values = _blogManager.GetBlogListWithCategory();
             return View(values);
         }
         public IActionResult BlogReadAll(int id)
         {
-            var values = _blogService.GetBlogById(id);
+            ViewBag.id = id;
+            var values = _blogManager.GetBlogById(id);
             return View(values);
         }
         
