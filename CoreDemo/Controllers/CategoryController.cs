@@ -13,9 +13,6 @@ namespace CoreDemo.Controllers
         {
             _categoryService = categoryService;
         }
-
-        //  CategoryManager cm = new CategoryManager(new EFCategoryRepository());
-
         public IActionResult Index()
         {
             var values = _categoryService.GetList();

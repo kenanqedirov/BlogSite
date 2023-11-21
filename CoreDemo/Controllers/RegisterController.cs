@@ -29,7 +29,7 @@ namespace CoreDemo.Controllers
             {
                 p.WriterStatus = true;
                 p.WriterAbout = "Test";
-                _writerManager.WriterAdd(p);
+                _writerManager.TAdd(p);
                 return RedirectToAction("Index", "Blog");
             }
             foreach (var item in results.Errors)

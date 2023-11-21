@@ -1,0 +1,31 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "BlogAdd";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h1>Add New Blog</h1>
+
+@using (Html.BeginForm("BlogAdd", "Blog", FormMethod.Post))
+{
+    @Html.Label("Blog Title")
+    @Html.TextBoxFor(a=>a.BlogTitle ,new {@class="form-control"})
+    @Html.ValidationMessageFor(a=>a.BlogTitle)
+    <br />
+    @Html.Label("Blog Image")
+    @Html.TextBoxFor(a=>a.BlogImage ,new {@class="form-control"})
+    @Html.ValidationMessageFor(a=>a.BlogImage)
+    <br />
+    @Html.Label("Blog Thumbnail")
+    @Html.TextBoxFor(a=>a.BlogThumbnailImage ,new {@class="form-control"})
+    @Html.ValidationMessageFor(a=>a.BlogThumbnailImage)
+    <br />
+    @Html.Label("Blog Category")
+    @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.categoryValues , new {@class="form-control"})
+    <br />
+    @Html.Label("Blog Content")
+    @Html.TextAreaFor(a=>a.BlogContent,10,3,new {@class="form-control"})
+    @Html.ValidationMessageFor(a=>a.BlogContent)
+    <br />
+    <button class="btn btn-success">Add Blog</button>
+}
