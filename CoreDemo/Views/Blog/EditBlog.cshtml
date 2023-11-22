@@ -1,0 +1,30 @@
+﻿@model Blog
+@{
+    ViewData["Title"] = "EditBlog";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h1>Edit Page</h1>
+<br />
+@using (Html.BeginForm("EditBlog", "Blog", FormMethod.Post))
+{
+    @Html.Label("Blog Id")
+    @Html.TextBoxFor(a=>a.BlogID , new {@class="form-control"})
+    <br />
+    @Html.Label("Blog title")
+    @Html.TextBoxFor(a=>a.BlogTitle , new {@class="form-control"})
+    <br />
+    @Html.Label("Blog Thumbnail Url")
+    @Html.TextBoxFor(a=>a.BlogThumbnailImage , new {@class="form-control"})
+    <br />
+    @Html.Label("Blog Image")
+    @Html.TextBoxFor(a=>a.BlogImage , new {@class="form-control"})
+    <br />
+    @Html.Label("Blog Category")
+    @Html.DropDownListFor(a=>a.CategoryID,(List<SelectListItem>)ViewBag.categoryValues , new {@class="form-control"})
+    <br />
+    @Html.Label("Blog Content")
+    @Html.TextAreaFor(a=>a.BlogContent,10,3, new {@class="form-control"})
+    <br />
+    <button class="btn btn-success">Edit Blog</button>
+}

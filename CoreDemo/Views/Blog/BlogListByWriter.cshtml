@@ -13,20 +13,19 @@
         <th>Category</th>
         <th>Status</th>
         <th>Delete</th>
-        <th>Update</th>
-        <th>U</th>
+        <th>Edit</th>
     </tr>
     @foreach (var item in Model)
     {
         <tr>
             <th>@item.BlogID</th>
             <td>@item.BlogTitle</td>
-            <td>@item.BLogCreateDate</td>
-            <td>@item.Category</td>
+            <td>@(((DateTime)item.BLogCreateDate).ToString("dd-MM-yyyy"))</td>
+            <td>@item.Category.CategoryName</td>
             <td>@item.BlogStatus</td>
-            <td><a href="#" class="btn btn-danger">Delete</a></td>
-            <td><a href="#" class="btn btn-warning">Update</a></td>
+            <td><a href="/Blog/DeleteBlog/@item.BlogID" class="btn btn-danger">Delete</a></td>
+            <td><a href="/Blog/EditBlog/@item.BlogID" class="btn btn-warning">Edit</a></td>
         </tr>
     }
 </table>
-<a href="#" class="btn btn-primary">Add New Blog</a>
+<a href="/Blog/BlogAdd/" class="btn btn-primary">Add New Blog</a>
