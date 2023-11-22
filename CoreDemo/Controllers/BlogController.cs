@@ -17,8 +17,8 @@ namespace CoreDemo.Controllers
     [AllowAnonymous]
     public class BlogController : Controller
     {
-        private readonly IBlogService _blogManager;
-        private readonly ICategoryService _categoryManager;
+        private IBlogService _blogManager;
+        private ICategoryService _categoryManager;
         public BlogController(IBlogService blogService, ICategoryService categoryService)
         {
             _blogManager = blogService;
