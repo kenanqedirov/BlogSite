@@ -66,7 +66,10 @@ namespace CoreDemo
 
 			services.AddScoped<IContactService, ContactManager>();
 			services.AddScoped<IContactDal, EFContactRepository>();
-		}
+
+            services.AddScoped<IWriterService, WriterManager>();
+            services.AddScoped<IWriterDal, EFWriterRepository>();
+        }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
