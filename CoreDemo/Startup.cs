@@ -69,6 +69,12 @@ namespace CoreDemo
 
             services.AddScoped<IWriterService, WriterManager>();
             services.AddScoped<IWriterDal, EFWriterRepository>();
+
+            services.AddScoped<INotificationService, NotificationManager>();
+            services.AddScoped<INotificationDal, EFNotificationRepository>();
+
+            services.AddScoped<IMessageService, MessageManager>();
+            services.AddScoped<IMessageDal, EFMessageRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

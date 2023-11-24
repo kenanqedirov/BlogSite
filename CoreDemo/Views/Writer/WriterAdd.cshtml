@@ -1,18 +1,15 @@
-﻿@model Writer
+﻿@model AddProfileImage
 @{
-    ViewData["Title"] = "WriterEditProfile";
+    ViewData["Title"] = "WriterAdd";
     Layout = "~/Views/Shared/WriterLayout.cshtml";
 }
 
-<h1>Writer Profile Information</h1>
-
-@using (Html.BeginForm("WriterEditProfile", "Writer", FormMethod.Post))
-{
+<form class="form-group" method="post" enctype="multipart/form-data">
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
             <div class="card-body">
                 <br />
-                <form class="forms-sample">
+                <div class="forms-sample">
                     @Html.HiddenFor(a=>a.WriterID, new {@class="form-control"})
                     <div class="form-group">
                         <label for="exampleInputName1">Writer Name Surname</label>
@@ -28,16 +25,10 @@
                         <label for="exampleInputPassword4">Password</label>
                         @Html.PasswordFor(a=>a.WriterPassword, new {@class="form-control"})
                         <span asp-validation-for="WriterPassword" class="text-danger"></span>
-                    </div>                  
+                    </div>
                     <div class="form-group">
                         <label>Writer Image</label>
-                        <input type="file" name="img[]" class="file-upload-default">
-                        <div class="input-group col-xs-12">
-                            <input type="text" class="form-control file-upload-info" disabled placeholder="Choose Image">
-                            <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
-                            </span>
-                        </div>
+                        <input type="file" name="WriterImage"/>
                     </div>
                     <div class="form-group">
                         <label for="exampleTextarea1">Writer About</label>
@@ -47,8 +38,9 @@
                     <button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
                     <button class="btn btn-light">Cancel</button>
                     <div asp-validation-summary="ModelOnly"></div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-}
+</form>
+
