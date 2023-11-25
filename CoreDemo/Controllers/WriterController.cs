@@ -1,15 +1,18 @@
 ﻿using BusinessLayer.Abstract;
 using BusinessLayer.ValidationRules;
 using CoreDemo.Models;
+using DataAccessLayer.Concrete;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.IO;
+using System.Linq;
 
 namespace CoreDemo.Controllers
 {
+	[Authorize]
 	public class WriterController : Controller
 	{
 		private readonly IWriterService _writerManager;
@@ -20,6 +23,11 @@ namespace CoreDemo.Controllers
         }
         public IActionResult Index()
 		{
+			var userName = User.Identity.Name;
+			ViewBag.userName = userName;
+			Context c = new Context();
+			var writerName = c.Writers.Where(a => a.WriterName == userName).Select(y => y.WriterName).FirstOrDefault();
+			ViewBag.writerName = writerName;
 			return View();
 		}
 		public IActionResult WriterProfile()
@@ -45,14 +53,18 @@ namespace CoreDemo.Controllers
 		{
 			return PartialView();
 		}
-		[AllowAnonymous]
+
 		[HttpGet]
 		public IActionResult WriterEditProfile()
 		{
-			var writerValues = _writerManager.GetById(1);
+			var c = new Context();
+            var userName = User.Identity.Name;
+            var writerID = c.Writers.Where(a => a.WriterMail == userName).Select(y => y.WriterID).FirstOrDefault();
+            var values = _writerManager.GetWriterById(writerID);
+            var writerValues = _writerManager.GetById(writerID);
 			return View(writerValues);
 		}
-		[AllowAnonymous]
+
 		[HttpPost]
         public IActionResult WriterEditProfile(Writer p)
         {

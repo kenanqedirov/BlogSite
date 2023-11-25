@@ -1,0 +1,19 @@
+﻿@model Message2
+
+@{
+    ViewData["Title"] = "MessageDetails";
+    Layout = "~/Views/Shared/WriterLayout.cshtml";
+}
+
+<h1>Message Details</h1>
+<br />
+    @Html.Label("Message Id")
+    @Html.TextBoxFor(a=>a.MessageID , new {@class="form-control",@readonly="readonly"})
+    <br />
+    @Html.Label("Message subject")
+@Html.TextBoxFor(a=>a.Subject , new {@class="form-control",@readonly="readonly"})
+    <br />
+    @Html.Label("Message Deatils")
+@Html.TextAreaFor(a=>a.MessageDetails ,10,3, new {@class="form-control",@readonly="readonly"})
+    <br />
+    <button class="btn btn-success">Go to Messages</button>

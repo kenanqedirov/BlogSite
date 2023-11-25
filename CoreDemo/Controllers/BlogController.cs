@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Abstract;
 using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
+using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
@@ -14,15 +15,16 @@ using System.Linq;
 
 namespace CoreDemo.Controllers
 {
-    [AllowAnonymous]
     public class BlogController : Controller
     {
         private IBlogService _blogManager;
         private ICategoryService _categoryManager;
+        Context c = new Context();
         public BlogController(IBlogService blogService, ICategoryService categoryService)
         {
             _blogManager = blogService;
             _categoryManager = categoryService;
+
         }
 
         public IActionResult Index()
@@ -38,7 +40,10 @@ namespace CoreDemo.Controllers
         }
         public IActionResult BlogListByWriter()
         {
-            var values = _blogManager.TGetListWithCategoryByWriter(1);
+            var c = new Context();
+            var userName = User.Identity.Name;
+            var writerID = c.Writers.Where(a => a.WriterMail == userName).Select(y => y.WriterID).FirstOrDefault();
+            var values = _blogManager.TGetListWithCategoryByWriter(writerID);
             return View(values);
         }
         [HttpGet]
@@ -60,9 +65,12 @@ namespace CoreDemo.Controllers
             ValidationResult results = validationRules.Validate(p);
             if (results.IsValid)
             {
+               
+                var userName = User.Identity.Name;
+                var writerID = c.Writers.Where(a => a.WriterMail == userName).Select(y => y.WriterID).FirstOrDefault();
                 p.BlogStatus = true;
                 p.BLogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
-                p.WriterID = 1;
+                p.WriterID = writerID;
                 _blogManager.TAdd(p);
                 return RedirectToAction("BlogListByWriter", "Blog");
             }
@@ -94,7 +102,9 @@ namespace CoreDemo.Controllers
         [HttpPost]
         public IActionResult EditBlog(Blog blog)
         {
-            blog.WriterID = 1;
+            var userName = User.Identity.Name;
+            var writerID = c.Writers.Where(a => a.WriterMail == userName).Select(y => y.WriterID).FirstOrDefault();
+            blog.WriterID = writerID;
             blog.BLogCreateDate = DateTime.Parse(DateTime.Now.ToShortDateString());
             blog.BlogStatus = true;
             _blogManager.TUpdate(blog);
