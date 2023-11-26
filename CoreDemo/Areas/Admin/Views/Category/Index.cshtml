@@ -1,0 +1,25 @@
+﻿@model List<Category>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<h1>Category List</h1>
+<table class="table table-bordered">
+<tr>
+    <th>#</th>
+    <th>Category Name</th>
+    <th>Do Passive</th>
+    <th>Do Active</th>
+    <th>Edit</th>
+</tr>
+@foreach (var item in Model)
+{
+    <tr>
+        <th>@item.CategoryID</th>
+        <td>@item.CategoryName</td>
+        <td><a href="#" class="btn btn-info">DO PASSIVE</a></td>
+        <td><a href="#" class="btn btn-primary">DO ACTIVE</a></td>
+        <td><a href="#" class="btn btn-warning">Edit</a></td>
+    </tr>
+}
+</table>
