@@ -1,0 +1,21 @@
+﻿@model Category
+@{
+    ViewData["Title"] = "AddCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Add New Category</h1>
+
+@using (Html.BeginForm("AddCategory", "Category", FormMethod.Post))
+{
+    @Html.Label("Category Name")
+    @Html.TextBoxFor(a=>a.CategoryName ,new {@class="form-control"})
+    @Html.ValidationMessageFor(a=>a.CategoryName)
+    <br />
+    @Html.Label("Category Description")
+    @Html.TextAreaFor(a=>a.CategoryDescription,10,3,new {@class="form-control"})
+    @Html.ValidationMessageFor(a=>a.CategoryDescription)
+    <br />
+    <button class="btn btn-success">Add Category</button>
+}
+
