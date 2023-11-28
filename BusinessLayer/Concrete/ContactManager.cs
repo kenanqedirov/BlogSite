@@ -25,7 +25,7 @@ namespace BusinessLayer.Concrete
 
         public List<Contact> GetList()
         {
-            throw new NotImplementedException();
+            return _contactDal.GetListAll();
         }
 
         public void TAdd(Contact t)

@@ -30,7 +30,7 @@ namespace BusinessLayer.Concrete
 
         public List<Comment> GetList()
         {
-            throw new NotImplementedException();
+            return _commentDal.GetListAll();
         }
 
         public void TAdd(Comment t)
