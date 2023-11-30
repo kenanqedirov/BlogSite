@@ -38,6 +38,7 @@ namespace CoreDemo
                 .Build();
                 config.Filters.Add(new AuthorizeFilter(policy));
             });
+            services.AddHttpClient();
             services.AddMvc();
             services.AddAuthentication(
                 CookieAuthenticationDefaults.AuthenticationScheme)

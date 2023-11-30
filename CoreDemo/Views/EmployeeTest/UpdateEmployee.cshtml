@@ -1,0 +1,19 @@
+﻿@using CoreDemo.Controllers
+@model MyEmployees
+@{
+    ViewData["Title"] = "UpdateEmployee";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Update Employee with API</h1>
+
+<form method="post">
+    <label>ID</label>
+    <input type="text" asp-for="ID" class="form-control"/>
+    <br />
+    <label>Employee Name</label>
+    <input type="text" asp-for="Name" class="form-control"/>
+    <br />
+    <button class="btn btn-outline-success">Update Employee</button>
+</form>
+

@@ -1,0 +1,28 @@
+﻿@using CoreDemo.Controllers
+@model List<MyEmployees>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Delete</th>
+        <th>Update</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.ID</td>
+            <td>@item.Name</td>
+            <td><a href="/EmployeeTest/DeleteEmployee/@item.ID" class="btn btn-outline-danger">Delete</a></td>
+            <td><a href="/EmployeeTest/UpdateEmployee/@item.ID" class="btn btn-outline-info">Update</a></td>
+        </tr>
+    }
+</table>
+<br />
+<td><a href="/EmployeeTest/AddEmployee/" class="btn btn-outline-success">New Employee</a></td>
+
