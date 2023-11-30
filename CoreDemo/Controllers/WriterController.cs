@@ -59,7 +59,8 @@ namespace CoreDemo.Controllers
 		{
 			var c = new Context();
             var userName = User.Identity.Name;
-            var writerID = c.Writers.Where(a => a.WriterMail == userName).Select(y => y.WriterID).FirstOrDefault();
+			var userMail =c.Users.Where(x=>x.UserName==userName).Select(x=>x.Email).FirstOrDefault();
+            var writerID = c.Writers.Where(a => a.WriterMail == userMail).Select(y => y.WriterID).FirstOrDefault();
             var values = _writerManager.GetWriterById(writerID);
             var writerValues = _writerManager.GetById(writerID);
 			return View(writerValues);

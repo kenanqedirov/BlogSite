@@ -15,6 +15,7 @@ using System.Linq;
 
 namespace CoreDemo.Controllers
 {
+    
     public class BlogController : Controller
     {
         private IBlogService _blogManager;
@@ -26,13 +27,14 @@ namespace CoreDemo.Controllers
             _categoryManager = categoryService;
 
         }
-
-        public IActionResult Index()
+		[AllowAnonymous]
+		public IActionResult Index()
         {
             var values = _blogManager.GetBlogListWithCategory();
             return View(values);
         }
-        public IActionResult BlogReadAll(int id)
+		[AllowAnonymous]
+		public IActionResult BlogReadAll(int id)
         {
             ViewBag.id = id;
             var values = _blogManager.GetBlogById(id);

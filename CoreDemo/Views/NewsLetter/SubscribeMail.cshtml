@@ -1,8 +1,25 @@
 ﻿<div class="tech-btm">
     <p>Take the mails about Technology,Films and other subject</p>
     <form action="/NewsLetter/SubscribeMail/"  method="post">
-        <input type="email" placeholder="Email" required="" name="Mail">
-        <input type="submit" value="Subscribe">
+        <input type="email" id="txtMail" placeholder="Email" required="" name="Mail">
+        <input type="submit" id="btnSubscribe" value="Subscribe">
     </form>
-
 </div>
+
+<script type="text/javascript">
+    $("#btnSubscribe").click(function () {
+        let values = {
+            Mail: $("#txtMail").val()
+        };
+        $.ajax({
+            type: "post",
+            url: "Newsletter/SubscribeMail/",
+            data: values,
+            success: function (func) {
+                let result = jQuery.parseJSON(func);
+            }
+        });
+    });
+</script>
+<script src="~\lib\jquery\dist\jquery.min.js"></script>
+<script src="~\lib\jquery\dist\jquery.js"></script>

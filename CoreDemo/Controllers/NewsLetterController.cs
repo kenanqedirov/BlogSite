@@ -1,13 +1,15 @@
 ﻿using BusinessLayer.Abstract;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CoreDemo.Controllers
 {
+    [AllowAnonymous]
     public class NewsLetterController : Controller
     {
         private readonly INewsLetterService _newsLetterManager;
-
+       
         public NewsLetterController(INewsLetterService newsLetterManager)
         {
             _newsLetterManager = newsLetterManager;
