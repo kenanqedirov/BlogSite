@@ -8,6 +8,7 @@
 
 @using (Html.BeginForm("BlogAdd", "Blog", FormMethod.Post))
 {
+    <input type="number" asp-for="BlogID" disabled/>
     @Html.Label("Blog Title")
     @Html.TextBoxFor(a=>a.BlogTitle ,new {@class="form-control"})
     @Html.ValidationMessageFor(a=>a.BlogTitle)

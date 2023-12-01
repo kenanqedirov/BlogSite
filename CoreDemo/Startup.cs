@@ -54,7 +54,16 @@ namespace CoreDemo
                 {
                     x.LoginPath = "/Login/Index";
                 });
-            #region
+            services.ConfigureApplicationCookie(options =>
+            {
+                // Cookie settings
+                options.Cookie.HttpOnly = true;
+                options.ExpireTimeSpan = TimeSpan.FromDays(1);
+
+                options.LoginPath = "/Login/Index";
+                options.SlidingExpiration = true;
+            });
+            #region IOC classes
             services.AddScoped<IBlogService, BlogManager>();
             services.AddScoped<IBlogDAL,EFBlogRepository>();
 
@@ -87,8 +96,12 @@ namespace CoreDemo
 
             services.AddScoped<IMessage2Service, Message2Manager>();
             services.AddScoped<IMessage2Dal, EFMessage2Repository>();
-            #endregion
-        }
+
+			services.AddScoped<IUserService, UserManager>();
+			services.AddScoped<IUserDal, EFUserRepository>();
+			#endregion
+
+		}
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

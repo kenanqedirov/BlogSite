@@ -9,10 +9,10 @@ namespace EntityLayer.Concrete
 {
     public class BlogRating
     {
-        [Key]
-        public int BlogRatingID { get; set; }
-        public int BlogID { get; set; }
-        public int BlogTotalScore { get; set; }
-        public int BlogRatingCount { get; set; }
+        //[Key]
+        //public int BlogRatingID { get; set; }
+        //public int BlogID { get; set; }
+        //public int BlogTotalScore { get; set; }
+        //public int BlogRatingCount { get; set; }
     }
 }

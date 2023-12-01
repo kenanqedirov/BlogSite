@@ -1,4 +1,4 @@
-﻿@model Writer
+﻿@model UserUpdateViewModel
 @{
     ViewData["Title"] = "WriterEditProfile";
     Layout = "~/Views/Shared/WriterLayout.cshtml";
@@ -6,49 +6,41 @@
 
 <h1>Writer Profile Information</h1>
 
-@using (Html.BeginForm("WriterEditProfile", "Writer", FormMethod.Post))
-{
-    <div class="col-12 grid-margin stretch-card">
-        <div class="card">
-            <div class="card-body">
-                <br />
-                <form class="forms-sample">
-                    @Html.HiddenFor(a=>a.WriterID, new {@class="form-control"})
-                    <div class="form-group">
-                        <label for="exampleInputName1">Writer Name Surname</label>
-                        @Html.TextBoxFor(a=>a.WriterName, new {@class="form-control"})
-                        <span asp-validation-for="WriterName" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputEmail3">Mail address</label>
-                        @Html.TextBoxFor(a=>a.WriterMail, new {@class="form-control"})
-                        <span asp-validation-for="WriterMail" class="text-danger"></span>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleInputPassword4">Password</label>
-                        @Html.PasswordFor(a=>a.WriterPassword, new {@class="form-control"})
-                        <span asp-validation-for="WriterPassword" class="text-danger"></span>
-                    </div>                  
-                    <div class="form-group">
-                        <label>Writer Image</label>
-                        <input type="file" name="img[]" class="file-upload-default">
-                        <div class="input-group col-xs-12">
-                            <input type="text" class="form-control file-upload-info" disabled placeholder="Choose Image">
-                            <span class="input-group-append">
-                                <button class="file-upload-browse btn btn-gradient-primary" type="button">Upload</button>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleTextarea1">Writer About</label>
-                        @Html.TextAreaFor(a=>a.WriterAbout,10,3, new {@class="form-control"})
-                        <span asp-validation-for="WriterAbout" class="text-danger"></span>
-                    </div>
-                    <button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
-                    <button class="btn btn-light">Cancel</button>
-                    <div asp-validation-summary="ModelOnly"></div>
-                </form>
-            </div>
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <br />
+            <form class="forms-sample" method="post" >
+                <div class="form-group">
+                    <label for="exampleInputName1">Writer Name Surname</label>
+                    <input type="text" asp-for="NameSurname" class="form-control" />
+                    <span asp-validation-for="NameSurname" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputName1">Writer Username</label>
+                    <input type="text" asp-for="Username" class="form-control" />
+                    <span asp-validation-for="Username" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Mail address</label>
+                    <input type="text" asp-for="Mail" class="form-control" />
+                    <span asp-validation-for="Mail" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Image Url</label>
+                    <input type="text" asp-for="ImageUrl" class="form-control" />
+                    <span asp-validation-for="ImageUrl" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail3">Password</label>
+                    <input type="text" asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+                <button type="submit" class="btn btn-gradient-primary mr-2">Update</button>
+                <button class="btn btn-light">Cancel</button>
+                <div asp-validation-summary="ModelOnly"></div>
+            </form>
         </div>
     </div>
-}
+</div>
