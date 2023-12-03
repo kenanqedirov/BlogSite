@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
-    public class CommentManager  : ICommentService
+    public class CommentManager : ICommentService
     {
         ICommentDal _commentDal;
 
@@ -21,6 +21,11 @@ namespace BusinessLayer.Concrete
         public Comment GetById(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public List<Comment> GetCommentsWithBlog()
+        {
+            return _commentDal.GetListWithBlog();
         }
 
         public List<Comment> GetList(int id)

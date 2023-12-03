@@ -10,7 +10,7 @@ using X.PagedList;
 
 namespace CoreDemo.Areas.Admin.Controllers
 {
-    [AllowAnonymous]
+    [Authorize(Roles = "Admin")]
     [Area("Admin")]
     public class CategoryController : Controller
     {

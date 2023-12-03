@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace CoreDemo.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    [AllowAnonymous]
+    [Authorize(Roles = "Admin")]
     public class ChartController : Controller
     {
         public IActionResult Index()
